@@ -66,7 +66,9 @@ var fight = function(enemy) {
 // function to start a new game
 var startGame = function () {
     // reset player stats
+    console.log("Age: ", +playerInfo.age);
     playerInfo.reset();
+    console.log("Age: ", +playerInfo.age);
 
     // Loop through and Fight each robot
     for (var i = 0; i < enemyInfo.length; i++) {
@@ -74,7 +76,7 @@ var startGame = function () {
         if (playerInfo.health > 0) {
             // let player know what round they are in
             window.alert("Welcome to Robot Gladiators! Round " + (i + 1) + "\nYour Health is " + playerInfo.health);
-
+            //debugger;
             //pick new enemy to fight based on the index of the enemy.names array
             // this should go above the window alert so the enemy name can be alerted along with their health
             var pickedEnemyObj = enemyInfo[i];
@@ -162,8 +164,21 @@ var randomNumber = function(min, max) {
     return value;
 };
 
+// function to get player name - not allow blank entries
+var getPlayerName = function() {
+    var name = "";
+    
+    while (name === "" || name === null) {
+        name = prompt("What is your Robot's name?");
+    }
+
+    console.log("Your Robots name is " + name);
+    return name
+};
+
 var playerInfo = {
-    name: window.prompt("What is your robot's name?"),
+    name: getPlayerName(),
+    age: window.prompt("What is your age?"),
     health: 100,
     attack: 10,
     money: 10,
