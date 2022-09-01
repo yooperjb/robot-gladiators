@@ -6,12 +6,12 @@ var fight = function(enemy) {
     while (enemy.health > 0 && playerInfo.health > 0) {
 
         // Ask user if they'd like to fight or run
-        var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? \nEnter 'FIGHT' or 'SKIP' to choose.").toLowerCase;
-
+        var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? \nEnter 'FIGHT' or 'SKIP' to choose.").toLowerCase();
+        console.log("promtFight:" + promptFight);
         // If user picks "skip" confirm and then stop the loop
         if (promptFight === "skip") {
             // Confirm user wants to skip
-            var confirmSkip = window.confirm("Are you sure you'd like to quit?\nMoney will be deducted.");
+            var confirmSkip = window.confirm("Are you sure you'd like to quit?\n$10 will be deducted.");
 
             // If yes (true), leave fight
             if (confirmSkip) {
@@ -25,6 +25,7 @@ var fight = function(enemy) {
 
         // generate random damage value based on players' attack power
         var damage = randomNumber(playerInfo.attack - 3, playerInfo.health);
+        console.log("Damage: " + damage);
 
         // the max number of enemies health after attack or 0 (so no negative number)
         enemy.health = Math.max(0, enemy.health - damage);
