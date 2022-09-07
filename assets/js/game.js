@@ -68,7 +68,6 @@ var startGame = function () {
     // reset player stats
     console.log("Age: ", +playerInfo.age);
     playerInfo.reset();
-    console.log("Age: ", +playerInfo.age);
 
     // Loop through and Fight each robot
     for (var i = 0; i < enemyInfo.length; i++) {
