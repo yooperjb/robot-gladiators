@@ -4,7 +4,6 @@ var fightOrSkip = function() {
     var promptText = window.prompt("Would you like to FIGHT or SKIP this battle? \nEnter 'FIGHT' or 'SKIP' to choose.");
     var promptFight = promptText === null ? null : promptText.toLowerCase();
     
-    console.log("promptText: ", promptText);
     // Conditional recursive function call
     if (!promptFight) {
         window.alert("You need to provide a valid answer! Please Try Again.");
@@ -44,7 +43,6 @@ var fight = function(enemy) {
     if (Math.random() > 0.5 ) {
         isPlayerTurn = false;
     }
-    console.log("isPlayerTurn:", isPlayerTurn);
     
     //repeat and execute as long as both the enemy robot and player are alive
     while (enemy.health > 0 && playerInfo.health > 0) {
@@ -59,7 +57,6 @@ var fight = function(enemy) {
 
             // generate random damage value based on players' attack power
             var damage = randomNumber(playerInfo.attack - 3, playerInfo.health);
-            console.log("Damage: " + damage);
 
             // the max number of enemies health after attack or 0 (so no negative number)
             enemy.health = Math.max(0, enemy.health - damage);
@@ -115,7 +112,6 @@ var fight = function(enemy) {
 // Function to start a new game
 var startGame = function () {
     // reset player stats
-    console.log("Age: ", +playerInfo.age);
     playerInfo.reset();
 
     // Loop through and Fight each robot
@@ -124,7 +120,7 @@ var startGame = function () {
         if (playerInfo.health > 0) {
             // let player know what round they are in
             window.alert("Welcome to Robot Gladiators! Round " + (i + 1) + "\nYour Health is " + playerInfo.health);
-            //debugger;
+            
             //pick new enemy to fight based on the index of the enemy.names array
             // this should go above the window alert so the enemy name can be alerted along with their health
             var pickedEnemyObj = enemyInfo[i];
@@ -160,10 +156,7 @@ var endGame = function () {
     window.alert("The game has now ended. Let's see how you did!");
 
     // check localStorage for high score, if it's not there, use 0
-    var highScore = localStorage.getItem("highscore");
-    if (highScore === null) {
-        highScore = 0;
-    }
+    var highScore = localStorage.getItem("highscore") || 0;
 
     // if player has more money than the high score, set new high score
     if (playerInfo.money > highScore) {
@@ -184,7 +177,6 @@ var endGame = function () {
         startGame();
     } else {
         window.alert("Thank you for playing Robot Gladiators! Come back soon!");
-
     }
 };
 
